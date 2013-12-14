@@ -1,0 +1,31 @@
+<project name = "project2" default = "compile">
+	<target name = "compile" depends = "clean">
+		<javac includeantruntime = "false" srcdir = "." />
+	</target>
+	
+	<target name = "clean">
+		<delete>
+			<fileset dir = "." includes = "**/*.class"/>
+			<fileset dir = "." includes = "**/*.*~"/>
+		</delete>	
+		<delete dir = "META-INF"/>	
+		<delete file = "project2.jar"/> 
+	</target>
+	
+	<target name = "jar">
+		<jar jarfile = "./project2.jar" basedir = ".">
+			<manifest>
+				<attribute name = "Main-Class" value = "Driver"/>
+			</manifest>
+		</jar>
+	</target>
+					
+	<target name = "run" depends="compile,author">
+		<java classname="Driver" classpath = "." />
+	</target>
+	
+	<target name = "author">
+		<echo message = "Walter Michelin"/>
+	</target>	
+</project >
+			
